@@ -41,7 +41,7 @@ model = pickle.load(open('model.pkl', 'rb'))
 main = Flask(__name__)
 
 
-@main.route('/', methods=['POST'])
+@main.route('/', methods=['GET'])
 def home():
     input_text = request.form.get('input_text')
 
