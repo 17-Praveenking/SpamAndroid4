@@ -1,4 +1,5 @@
 nltk~=3.8.1
 flask~=3.0.3
 sklearn
+scikit-learn
 gunicorn
