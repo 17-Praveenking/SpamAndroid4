@@ -41,13 +41,8 @@ model = pickle.load(open('model.pkl', 'rb'))
 main = Flask(__name__)
 
 
-@main.route('/')
+@main.route('/', methods=['POST'])
 def home():
-    return "Hello world"
-
-
-@main.route('/predict', methods=['POST'])
-def predict():
     input_text = request.form.get('input_text')
 
     transformed_text = transform_text(input_text)
@@ -60,6 +55,22 @@ def predict():
         return jsonify({'SPAM': str(result)})
     else:
         return jsonify({'HAM': str(result)})
+
+
+# @main.route('/predict', methods=['POST'])
+# def predict():
+#     input_text = request.form.get('input_text')
+
+#     transformed_text = transform_text(input_text)
+
+#     vector_input = tfidf.transform([transformed_text])
+
+#     result = model.predict(vector_input)[0]
+
+#     if result == 1:
+#         return jsonify({'SPAM': str(result)})
+#     else:
+#         return jsonify({'HAM': str(result)})
 
     # result = {'input_text': input_text}
     # return jsonify(result)
